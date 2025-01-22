@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUDS SYSTEM</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Cruds</h1>
+      <p>Create read update delete search</p>
+      <section id="inputs">
+        <form>
+          <input
+            id="title"
+            autofocus
+            type="text"
+            placeholder="title"
+            required
+          />
+          <div id="form-price">
+            <input
+              type="number"
+              onkeyup="getTotal()"
+              id="price"
+              placeholder="price"
+              required
+            />
+            <input
+              type="number"
+              onkeyup="getTotal()"
+              id="taxes"
+              placeholder="taxes"
+            />
+            <input
+              type="number"
+              onkeyup="getTotal()"
+              id="ads"
+              placeholder="ads"
+            />
+            <input
+              type="number"
+              onkeyup="getTotal()"
+              id="discount"
+              placeholder="discount"
+            />
+            <h6 id="total">0</h6>
+          </div>
+          <input
+            type="number"
+            spellcheck="true"
+            id="count"
+            placeholder="count"
+          />
+          <input type="text" id="category" placeholder="category" required />
+          <button id="create">create</button>
+        </form>
+      </section>
+      <section id="search-section">
+        <form>
+          <input type="search" id="search" placeholder="search" required />
+        </form>
+        <div id="buttons">
+          <button>search by title</button> <button>search by category</button>
+        </div>
+        <button id="delete-all" onclick="deleteAll()">delete all</button>
+      </section>
+      <section id="output">
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>title</th>
+              <th>price</th>
+              <th>taxes</th>
+              <th>ads</th>
+              <th>discount</th>
+              <th>total</th>
+              <th>category</th>
+              <th>update</th>
+              <th>delete</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
