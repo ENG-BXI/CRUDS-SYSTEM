@@ -12,8 +12,10 @@ let DeleteAll = document.getElementById("delete-all");
 let formPriceInput = document.querySelectorAll("#form-price input");
 let ButtonIsCreate = true;
 let indexForUpdate;
+let typeOfSearch = "";
 let listItemWord = "listItem"; //end point to use im local storage
 let listItem = [];
+let newListForSearch = [];
 let item = {}; //object to add in list in local storage
 
 if (localStorage.getItem(listItemWord)) {
@@ -110,7 +112,6 @@ function clearInputs() {
 function showItem() {
   if (localStorage.getItem(listItemWord)) {
     listItem = JSON.parse(localStorage.getItem(listItemWord));
-
     let tbody = document.querySelector("tbody");
     tbody.innerHTML = "";
     listItem.forEach((element, index) => {
@@ -134,6 +135,25 @@ function showItem() {
     }
     DeleteAll.innerText = `delete all (${listItem.length})`;
   }
+}
+function showItemBySearch(listOfItem) {
+  let tbody = document.querySelector("tbody");
+  tbody.innerHTML = "";
+  listOfItem.forEach((element, index) => {
+    tbody.innerHTML += `<tr onclick="updateItem(${index})">  
+        <td>${index}</td>
+        <td>${element.title}</td>
+        <td>${element.price}</td>
+        <td>${element.taxes}</td>
+        <td>${element.ads}</td>
+        <td>${element.discount}</td>
+        <td>${element.total}</td>
+        <td>${element.category}</td>
+        <td><button onclick="updateItem(${index})" id="update">update</button></td>
+        <td><button onclick="deleteItem(${index})" id="delete">delete</button></td>
+    </tr>`;
+  });
+  DeleteAll.style.display = "none";
 }
 //update
 function updateItem(e) {
@@ -163,4 +183,27 @@ function deleteAll() {
     showItem();
   }
 }
+function switchTitle_category(type) {
+  showItem();
+  if (type != typeOfSearch) {
+    search.focus();
+    typeOfSearch = type;
+    search.placeholder = `search by ${type}`;
+  }
+}
 //search
+function searchByTitleOrCategory() {
+  if (search.value != "") {
+    newListForSearch = listItem.filter((element, index) => {
+      return typeOfSearch === "title"
+        ? element.title.includes(search.value)
+        : typeOfSearch === "category"
+        ? element.category.includes(search.value)
+        : element;
+    });
+    showItemBySearch(newListForSearch);
+  } else {
+    newListForSearch = null;
+    showItem();
+  }
+}

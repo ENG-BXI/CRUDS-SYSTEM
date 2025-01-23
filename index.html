@@ -59,10 +59,21 @@
       </section>
       <section id="search-section">
         <form>
-          <input type="search" id="search" placeholder="search" required />
+          <input
+            type="search"
+            onkeyup="searchByTitleOrCategory()"
+            id="search"
+            placeholder="search"
+            required
+          />
         </form>
         <div id="buttons">
-          <button>search by title</button> <button>search by category</button>
+          <button onclick="switchTitle_category('title')">
+            search by title
+          </button>
+          <button onclick="switchTitle_category('category')">
+            search by category
+          </button>
         </div>
         <button id="delete-all" onclick="deleteAll()">delete all</button>
       </section>

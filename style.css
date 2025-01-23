@@ -8,8 +8,6 @@
 
 body {
     background-color: #222;
-    width: 100vw;
-
 }
 
 main {
@@ -174,7 +172,7 @@ table {
         -moz-transform: scale(1.03);
         -ms-transform: scale(1.03);
         -o-transform: scale(1.03);
-}
+    }
 }
 
 table tr:hover {
